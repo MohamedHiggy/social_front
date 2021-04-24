@@ -1,0 +1,53 @@
+.auth-content {
+    .auth-content-form {
+        margin: 0 auto;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        .auth-form {
+            width: 500px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            .forget-hint {
+                font-size: 16px;
+                color: #424143;
+                text-align: left;
+            }
+            .form-group {
+                .error-mesage {
+                    padding: 3px 0 0 0;
+                    font-size: 14px;
+                    text-align: left;
+                    color: red;
+                }
+                label {
+                    display: block;
+                    text-align: left;
+                    font-size: 14px;
+                    font-weight: normal;
+                    color: #424143;
+                }
+            }
+            label.label-error {
+                color: red;
+            }
+            .form-check {
+                text-align: left;
+                padding: 0;
+            }
+            .form-group-bottom {
+                text-align: right;
+                .auth-form-link {
+                    text-decoration: underline;
+                    margin-right: 10px;
+                    color: #424143;
+                    font-size: 13px;
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+}

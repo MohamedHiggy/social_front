@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    background-color: rgba(243, 244, 246, 1);
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/*_______________ Pages _______________*/
+
+@import'homePage';
+
+/*_______________ General _______________*/
+
+@import'buttons';
+@import'general';
+@import'auth';
+@import'navbar';
