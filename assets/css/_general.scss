@@ -81,3 +81,17 @@
     background-color: #fff;
     border-color: #fff;
 }
+
+.read-more-text {
+    color: #424143;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    &:focus {
+        border: none;
+        outline: none;
+    }
+}

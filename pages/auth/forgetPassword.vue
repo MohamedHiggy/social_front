@@ -12,7 +12,7 @@
               type="text"
               class="form-control input-focus"
               id="emailOrUser"
-              v-model="email"
+              v-model="body.email"
               placeholder="Enter your email"
             />
           </div>
@@ -26,16 +26,22 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
+  middleware: [
+    'redirectIfAuthenticated'
+  ],
   data() {
     return {
+      body: {
         email: ""
+      }
     };
   },
   methods: {
-    submitForm() {
-      console.log(this.email);
-    }
+    async submitForm() {
+      await axios.post("http://social.test/api/forget-password", this.body)
+    },
   }
 };
 </script>

@@ -1,0 +1,52 @@
+.right-side {
+    .site-search {
+        position: relative;
+        .search-icons {
+            position: absolute;
+            left: 6px;
+            bottom: 11px;
+        }
+        .siteSearchInput {
+            width: 100%;
+            padding: 12px 0 12px 40px;
+            transition: .15s ease-in-out;
+            font-size: 14px;
+            line-height: 18px;
+            color: #575756;
+            border: 2px solid #E0E0E0;
+            background-color: #F9FAFC;
+            &:focus {
+                box-shadow: none;
+                outline: none;
+                border: 2px solid transparent;
+                background-color: transparent;
+                border-bottom: 2px solid #E0E0E0;
+            }
+        }
+    }
+    .peopleFollow {
+        padding: 15px 0;
+        .peopleFollow-title {
+            font-weight: bold;
+            margin: 0;
+            color: #353536;
+            font-size: 20px;
+        }
+        .list-style {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .list {
+                margin: 5px 0;
+                width: 80px;
+                .user-follow-img {
+                    border: 1px solid #E0E0E0;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

@@ -10,14 +10,24 @@ html {
     font-family: 'Poppins', sans-serif;
 }
 
+.left-side-content,
+.right-side-content {}
 
-/*_______________ Pages _______________*/
+
+/*_______________ mainContent _______________*/
 
 @import'homePage';
+@import'posts';
+@import'profilePage';
+@import'rightSide';
+@import'leftSide';
+@import'settingNavBar';
 
 /*_______________ General _______________*/
 
 @import'buttons';
 @import'general';
 @import'auth';
+@import'addPostCard';
+@import'postCard';
 @import'navbar';

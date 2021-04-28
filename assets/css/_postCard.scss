@@ -1,0 +1,75 @@
+.post-card {
+    background-color: #fff;
+    padding: 20px 30px 10px 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 0;
+    .post-card-img {
+        width: 80px;
+        margin-right: 15px;
+        img {
+            width: 100%;
+            height: 75px;
+        }
+    }
+    .post-card-content {
+        width: calc(100% - 80px);
+        .post-card-content-header {
+            display: flex;
+            justify-content: space-between;
+            .post-card-content-header-left {
+                display: flex;
+                .post-card-content-header-title {
+                    margin: 0;
+                    font-weight: bold;
+                    font-size: 16px;
+                    color: #242426;
+                }
+                .post-card-content-header-user {
+                    margin: 0 10px;
+                    color: #7F8185;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+                .post-card-content-header-title-date {
+                    color: #B1B2B4;
+                    font-size: 16px;
+                }
+            }
+            .post-card-content-header-right {
+                .dropdown {
+                    .btn {
+                        padding: 0;
+                        &:focus {
+                            box-shadow: none;
+                            outline: none;
+                        }
+                    }
+                }
+            }
+        }
+        .post-card-content-middle {
+            padding: 10px 0;
+            .post-card-content-middle-text {
+                color: #242426;
+                font-size: 18px;
+            }
+        }
+        .post-card-content-bottom {
+            display: flex;
+            .post-card-actions-btn {
+                border: none;
+                background-color: transparent;
+                display: block;
+                text-align: left;
+                width: auto;
+                margin: 0 10px 0 0;
+                &:focus {
+                    box-shadow: none;
+                    outline: none;
+                }
+            }
+        }
+    }
+}

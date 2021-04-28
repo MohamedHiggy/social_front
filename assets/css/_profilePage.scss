@@ -1,0 +1,139 @@
+.profile-page {
+    padding: 30px 0;
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .profile-header-box {
+        background-color: #ffffff;
+        p {
+            margin: 0;
+        }
+        position: relative;
+        border-radius: 10px;
+        .user-cover-img {
+            position: relative;
+            .change-btn {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                border: none;
+                background-color: #E0E0E0;
+                color: #242426;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+            img {
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                width: 100%;
+            }
+        }
+        .user-profile-img {
+            position: absolute;
+            top: 150px;
+            left: 50px;
+            border: 3px solid #fff;
+            width: 100px;
+            border-radius: 50%;
+            .avatar {
+                width: 100%;
+            }
+        }
+        .user-profile-info {
+            padding: 30px 60px 30px 60px;
+            .info-header {
+                .info-name {
+                    font-weight: bold;
+                    font-size: 20px;
+                    color: #242426;
+                }
+                .info-username {
+                    color: #7F8185;
+                    font-size: 16px;
+                    font-weight: normal;
+                }
+            }
+            .info-about {
+                padding: 10px 0;
+                .info-desc {
+                    color: #7F8185;
+                    font-size: 17px;
+                }
+            }
+            .info-list-style {
+                margin: 10px 0;
+                .list {
+                    margin: 0 0 5px 0;
+                    .user-link {
+                        color: #007AFF;
+                        text-decoration: none;
+                        i {
+                            color: #000;
+                        }
+                    }
+                }
+            }
+            .info-follow {
+                .follow {
+                    color: #7F8185;
+                    text-decoration: none;
+                    margin-right: 20px;
+                    font-size: 18px;
+                    .number {
+                        font-weight: bold;
+                    }
+                }
+            }
+            .info-tags {
+                padding: 10px 0;
+                margin-top: 5px;
+                .tags-list-style {
+                    display: flex;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                    .list {
+                        background-color: #B5C7D3;
+                        padding: 3px 8px;
+                        border-radius: 3px;
+                        margin: 0 10px 10px 0;
+                        a {
+                            color: #242426;
+                            font-weight: bold;
+                            text-decoration: none;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .profile-nav-bar {
+        background-color: #fff;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        .profile-list-style {
+            display: flex;
+            justify-content: space-between;
+            .list {
+                text-align: center;
+                width: 50%;
+                .list-anchor {
+                    display: block;
+                    font-weight: bold;
+                    color: #242426;
+                    font-size: 18px;
+                    text-decoration: none;
+                    padding: 10px 0;
+                    border-bottom: 3px solid #B1B2B4;
+                }
+                .nuxt-link-exact-active {
+                    border-bottom: 3px solid #007AFF;
+                    color: #007AFF;
+                }
+            }
+        }
+    }
+}

@@ -1,3 +1,4 @@
+require('dotenv').config()
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
@@ -30,15 +31,17 @@ export default {
                 src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'
             },
             {
-                src: 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js'
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'
             },
             {
                 src: 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js'
-            }
+            },
         ],
     },
 
-    router: {},
+    router: {
+        middleware: ["clearValidationError"]
+    },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
@@ -46,7 +49,10 @@ export default {
     ],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [],
+    plugins: [
+        "./plugins/mixins/validation",
+        "./plugins/axios",
+    ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
@@ -59,14 +65,89 @@ export default {
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
         '@nuxtjs/auth',
-        "@nuxtjs/toast"
+        '@nuxtjs/moment',
+        '@nuxtjs/laravel-echo',
+        "@nuxtjs/toast", ['@nuxtjs/dotenv', { path: './' }],
     ],
+    loading: {
+        color: '#007AFF',
+        height: '4px'
+    },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
-        baseURL: "http://social.test/api",
+        baseURL: process.env.LARAVEL_ENDPOINT,
         credentials: true,
     },
+    auth: {
+        vuex: {
+            namespace: 'nuxtAuth'
+        },
+        strategies: {
+            local: {
+                endpoints: {
+                    login: { url: '/login', method: 'post', propertyName: 'access_token' },
+                    user: { url: '/user/me', method: 'get', propertyName: 'user' },
+                    logout: { url: '/user/logout', method: 'post' }
+                },
+            }
+        },
+        redirect: {
+            login: '/auth/login',
+            callback: '/auth/login',
+            logout: '/auth/login'
+        }
+    },
+
+    auth: {
+        redirect: {
+            login: "/login",
+            logout: "/auth/login",
+            callback: "/login",
+            user: "/profile"
+        },
+        strategies: {
+            password_grant: {
+                _scheme: "local",
+                endpoints: {
+                    login: {
+                        url: "/login",
+                        method: "post",
+                        propertyName: "data.access_token"
+                    },
+                    logout: false,
+                    user: {
+                        url: "/user/me"
+                    }
+                }
+            },
+            password_grant_custom: {
+                _scheme: "~/helpers/schemes/PassportPasswordScheme.js",
+                client_id: process.env.PASSPORT_PASSWORD_GRANT_ID,
+                client_secret: process.env.PASSPORT_PASSWORD_GRANT_SECRET,
+                endpoints: {
+                    login: {
+                        url: "/login",
+                        method: "post",
+                        propertyName: "data.access_token"
+                    },
+                    logout: false,
+                    user: {
+                        url: "/user/me",
+                        method: "get",
+                        propertyName: "data"
+                    }
+                }
+            },
+            'laravel.passport': {
+                url: process.env.LARAVEL_ENDPOINT,
+                client_id: process.env.PASSPORT_CLIENT_ID,
+                client_secret: process.env.PASSPORT_CLIENT_SECRET,
+                userinfo_endpoint: process.env.LARAVEL_ENDPOINT + "/user/me",
+            }
+        }
+    },
+
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {}
 }
