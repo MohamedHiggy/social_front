@@ -12,7 +12,7 @@
 
       <!--profile user img-->
       <div class="user-profile-img">
-        <img :src="user.avatar.original" class="rounded-circle avatar" alt="" />
+        <span :style="'background-image: url(\'' + user.avatar.original + '\');'" class="rounded-circle avatar"></span>
       </div>
 
       <!--profile user info -->
