@@ -50,26 +50,7 @@
     logout() {
       this.$auth.logout();
     },
-    handleScroll () {
-      const classesToAdd = ['fixed-top', 'shadow'];
-      if (window.scrollY > 50) {
-        document.getElementById('navbar_top').classList.add(...classesToAdd);
-        // add padding top to show content behind navbar
-        const navbar_height = document.querySelector('.navbar').offsetHeight;
-        document.body.style.paddingTop = navbar_height + 'px';
-      } else {
-        document.getElementById('navbar_top').classList.remove(...classesToAdd);
-         // remove padding top from body
-        document.body.style.paddingTop = '0';
-      }
-    }
   },
-  beforeMount () {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
   }
 </script>
 

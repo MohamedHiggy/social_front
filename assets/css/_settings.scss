@@ -1,0 +1,87 @@
+.setting-page {
+    padding: 20px 0;
+    .setting-sec {
+        .title {
+            padding: 10px;
+            margin: 0 0 10px 0;
+            font-weight: bold;
+            font-size: 20px;
+            color: #242426;
+        }
+        .setting-sec-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            .setting-box-title {
+                margin: 0;
+                font-size: 18px;
+                font-weight: normal;
+                color: #242426;
+            }
+            .setting-box-subtitle {
+                margin: 0;
+                font-size: 13px;
+                font-weight: normal;
+                color: #B1B2B4;
+            }
+            .user-photo {
+                padding: 10px 0 20px 0;
+                .profilePhotoLabel {
+                    display: none;
+                }
+                .photoPreview {
+                    padding: 10px;
+                    span {
+                        width: 100px;
+                        height: 100px;
+                        display: block;
+                        border-radius: 50%;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: center center;
+                    }
+                }
+                .user-photo-btn {
+                    margin: 0 10px 0 0;
+                    border: 1px solid #EDEFF2;
+                    background-color: transparent;
+                    color: #242426;
+                    font-size: 14px;
+                    padding: 5px 15px;
+                    border-radius: 4px;
+                }
+            }
+            .form-group {
+                label {
+                    margin: 0;
+                    font-size: 14px;
+                    color: #7F8185 !important;
+                }
+            }
+            .setting-sec-box-btn {
+                margin: 0 10px 0 0;
+                border: none;
+                background-color: #242426;
+                color: #fff;
+                font-size: 16px;
+                padding: 5px 20px;
+                border-radius: 4px;
+            }
+            .setting-box-text {
+                font-size: 13px;
+                font-weight: normal;
+                color: #242426;
+            }
+            .setting-sec-box-delete-btn {
+                margin: 0 10px 0 0;
+                border: none;
+                background-color: #FF3B30;
+                color: #fff;
+                font-size: 16px;
+                padding: 5px 20px;
+                border-radius: 4px;
+            }
+        }
+    }
+}

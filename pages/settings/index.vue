@@ -1,5 +1,5 @@
 <template>
-    <div class="profile-page">
+    <div class="setting-page">
       <div class="container">
         <div class="row">
           <!--Left SideBar-->
@@ -7,27 +7,14 @@
             <LeftSide />
           </div>
           <!--Content-->
-          <div class="col-lg-4 col-md-9 col-xs-12">
-            <div class="setting-navbar">
+          <div class="col-lg-9 col-md-9 col-xs-12">
+            <div class="setting-sec">
               <p class="title">Settings</p>
-              <ul class="setting-list-style">
-                <li class="list">
-                  <nuxt-link to="#" exact class="list-a">
-                    Your account
-                    <i class="fa fa-chevron-right"></i>
-                  </nuxt-link>
-                </li>
-                <li class="list">
-                  <nuxt-link to="#" class="list-a">
-                    security and account access
-                    <i class="fa fa-chevron-right"></i>
-                  </nuxt-link>
-                </li>
-              </ul>
+              <profileInfo />
+              <changePass />
+              <TwoFactorAuth />
+              <deleteAcc />
             </div>
-          </div>
-          <div class="col-lg-5 col-md-9 col-xs-12">
-            <h1>Settings</h1>
           </div>
         </div>
       </div>
@@ -37,14 +24,18 @@
 
 <script>
 import LeftSide from "@/components/global/TheLeftSide";
+import profileInfo from "@/components/settings/profileInfo";
+import changePass from "@/components/settings/updatePassword";
+import deleteAcc from "@/components/settings/deleteProfile";
+import TwoFactorAuth from "@/components/settings/TwoFactorAuthenticationForm";
 export default {
   middleware: ['redirectIfGuest'],
-  data() {
-    return {
-    }
-  },
   components: {
     LeftSide,
+    profileInfo,
+    changePass,
+    deleteAcc,
+    TwoFactorAuth
   },
 };
 </script>
