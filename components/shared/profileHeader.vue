@@ -2,7 +2,6 @@
   <div class="profile-header-box shadow">
     <div class="profile-header">
       <!--cover user img-->
-
       <div class="user-cover-img">
         <img src="@/store/imgs/cover-img.jpg" alt="" />
         <button class="change-btn cover-btn" type="button">
@@ -93,7 +92,9 @@ export default {
     user: {
       type: Object
     }
-  }
+  },
+  mounted() {
+  },
 };
 </script>
 

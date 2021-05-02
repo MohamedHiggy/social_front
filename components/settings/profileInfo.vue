@@ -3,31 +3,43 @@
       <p class="setting-box-title">Profile Information</p>
       <p class="setting-box-subtitle">Update your account's profile information and email address.</p>
       <div class="setting-sec-box-content mt-3">
-        <form @submit.prevent="saveInfo" class="user_info">
-          <div class="user-photo">
 
+        <form @submit.prevent="SendImg">
+            <div class="user-photo">
             <label for="photo" class="profilePhotoLabel">
-             <input type="file" accept="image/*" ref="photo" class="hidden" @change="PreviewPhoto">
+              <input type="file" accept="image/*" ref="photo" class="hidden" @change="PreviewPhoto">
             </label>
 
-            <div class="photoPreview" v-show="!userImg.avatar">
-              <img :src="user.avatar.original" :alt="user.name" class="rounded-circle avatar" width="100" height="100">
+            <div class="photoPreview" v-show="!PreviewAvatar">
+              <img  :src="user.avatar.original" :alt="user.name" class="rounded-circle avatar" width="100" height="100">
             </div>
 
-            <div class="photoPreview" v-show="userImg.avatar">
-              <span :style="'background-image: url(\'' + userImg.avatar + '\');'"></span>
+            <div class="photoPreview" v-show="PreviewAvatar">
+              <span :style="'background-image: url(\'' + PreviewAvatar + '\');'"></span>
             </div>
 
-            <button class="user-photo-btn" type="button" v-show="!userImg.avatar" @click.prevent="selectNewPhoto">Select A New Photo</button>
-            <button class="user-photo-btn" type="button" v-show="userImg.avatar" @click.prevent="SendImg">Update A New Photo</button>
+            <button class="user-photo-btn" type="button" v-show="!PreviewAvatar" @click.prevent="selectNewPhoto">Select A New Photo</button>
+
+
+            <button class="user-photo-btn" type="button" disabled v-if="isLoading">
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Loading...
+            </button>
+            <button class="user-photo-btn" type="submit" v-show="PreviewAvatar" v-else>Update A New Photo</button>
 
             <button class="user-photo-btn" type="button" @click.prevent="deletePhoto">Remove Photo</button>
           </div>
+        </form>
 
+        <form @submit.prevent="updateUserInfo" class="user_info">
           <div class="form-row">
             <div class="form-group col-8">
               <label for="name">Name</label>
               <input type="text" class="form-control input-focus" id="name" aria-describedby="name" placeholder="Name" v-model="profileInfo.name">
+            </div>
+            <div class="form-group col-8">
+              <label for="username">Username</label>
+              <input type="text" class="form-control input-focus" id="username" aria-describedby="username" placeholder="username" v-model="profileInfo.username">
             </div>
             <div class="form-group col-8">
               <label for="email">Email</label>
@@ -47,13 +59,16 @@ import axios from 'axios';
   data() {
     return {
       profileInfo: {
-        name: null,
-        email: null,
+        username: "",
+        name: "",
+        email: "",
       },
       userImg: {
         avatar: null,
       },
-      user_token: ''
+      PreviewAvatar: null,
+      user_token: '',
+      isLoading: false
     }
   },
   mounted() {
@@ -66,31 +81,52 @@ import axios from 'axios';
   },
   methods: {
     PreviewPhoto(event) {
-      var input = event.target;
+      this.userImg.avatar = event.target.files[0];
+      var input = event.target
       if (input.files) {
         var reader = new FileReader();
         reader.onload = (e) => {
-          this.userImg.avatar = e.target.result;
+          this.PreviewAvatar = e.target.result;
         }
-        this.userImg.avatar=input.files[0];
+        this.PreviewAvatar=input.files[0];
         reader.readAsDataURL(input.files[0]);
       }
-    },
-    async SendImg(){
-     const headers = {
-        'Accept': 'application/json',
-        'Authorization': this.user_token
-      }
-      await axios.post("http://social.test/api/user/update-avatar", this.userImg, { headers })
     },
     selectNewPhoto() {
       this.$refs.photo.click();
     },
     deletePhoto() {
-      this.photoPreview = null
+      this.PreviewAvatar= null
     },
-    saveInfo() {
-      console.log("saveInfo");
+    async SendImg(){
+      this.isLoading = true
+     const headers = {
+        'Accept': 'application/json',
+        'Authorization': this.user_token
+      }
+      const avatar = new FormData();
+      avatar.append("avatar",  this.userImg.avatar ,this.userImg.avatar.name)
+
+      await axios
+        .post("http://social.test/api/user/update-avatar", avatar, { headers })
+        .then(res => {
+          if (res.status === 200) {this.PreviewAvatar = null}
+          this.isLoading = false
+        })
+        .catch(err => { this.isLoading = false })
+        this.$auth.fetchUser()
+    },
+    async updateUserInfo() {
+     const headers = {
+        'Accept': 'application/json',
+        'Authorization': this.user_token
+      }
+      await axios.post("http://social.test/api/user/update-info", this.profileInfo, { headers }).then(res => {
+        console.log(res.data);
+      }).catch(err => {
+        console.log(err);
+      });
+      this.$auth.fetchUser()
     },
   },
   }

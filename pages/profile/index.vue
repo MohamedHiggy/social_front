@@ -39,8 +39,9 @@ export default {
   computed: {
     ...mapGetters({
       user: 'user',
-    })
+    }),
   },
+
   methods: {
   },
   components: {

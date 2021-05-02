@@ -80,26 +80,6 @@ export default {
         credentials: true,
     },
     auth: {
-        vuex: {
-            namespace: 'nuxtAuth'
-        },
-        strategies: {
-            local: {
-                endpoints: {
-                    login: { url: '/login', method: 'post', propertyName: 'access_token' },
-                    user: { url: '/user/me', method: 'get', propertyName: 'user' },
-                    logout: { url: '/user/logout', method: 'post' }
-                },
-            }
-        },
-        redirect: {
-            login: '/auth/login',
-            callback: '/auth/login',
-            logout: '/auth/login'
-        }
-    },
-
-    auth: {
         redirect: {
             login: "/login",
             logout: "/auth/login",
@@ -117,7 +97,8 @@ export default {
                     },
                     logout: false,
                     user: {
-                        url: "/user/me"
+                        url: "/user/me",
+                        autoFetch: true
                     }
                 }
             },
@@ -135,7 +116,8 @@ export default {
                     user: {
                         url: "/user/me",
                         method: "get",
-                        propertyName: "data"
+                        propertyName: "data",
+                        autoFetch: true
                     }
                 }
             },
